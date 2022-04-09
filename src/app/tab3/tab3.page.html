@@ -1,17 +1,42 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      {{student.name}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-fab>
+    <ion-fab-button horizontal="end" vertical="top" slot="fixed" edge>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list>
+      <ion-fab-button color="success">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="warning">
+        <ion-icon name="close"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="danger" (click)="delete(student.id)">
+        <ion-icon name="trash"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list> 
+  </ion-fab>
+  <ion-card text-center>
+    <ion-card-header>
+      <ion-card-subtitle>{{student.name}}</ion-card-subtitle>
+      <ion-card-title>{{student.controlnumber}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Curp:<strong>{{student.curp}}</strong></p>
+      <p>Edad:<strong>{{student.age}}</strong></p>
+      <ion-chip *ngIf="student.active" class="ion-float-center">
+        <ion-label>Activo</ion-label>
+      </ion-chip>
+      <ion-chip *ngIf="!student.active" class="ion-float-center">
+        <ion-label>Inactivo</ion-label>
+      </ion-chip>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
